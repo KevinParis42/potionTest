@@ -1,5 +1,5 @@
 "use client"
-import { filtersAtom, productColumnAtom, productListAtom } from '@/Atoms';
+import { activOperatorAtom, activPropertyAtom, activValueAtom, filtersAtom, productColumnAtom, productListAtom } from '@/Atoms';
 import { Actions, ProductType } from '@/Types';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
@@ -17,9 +17,14 @@ const ProductTable = () => {
 
   const productList = useAtomValue(productListAtom)
   const productColumn = useAtomValue(productColumnAtom)
+  const activProperty = useAtomValue(activPropertyAtom)
+  const activOperator = useAtomValue(activOperatorAtom)
+  const activValue = useAtomValue(activValueAtom)
   const filter = useAtomValue(filtersAtom)
 
   const productListReducer = (state: ProductType[], action: Actions) => {
+    if (action.type === '')
+      return productList
     if (!filter[action.type] || !filter[action.type][1])
       return productList
     const val = filter[action.type][0] as string
@@ -59,12 +64,15 @@ const ProductTable = () => {
   const [currentProductList, dispatch] = useReducer(productListReducer, productList)
 
   useEffect(() => {
+    if (!activOperator || !activValue || !activProperty) {
+      dispatch({ type: '' })
+      return
+    }
     const keys = Object.keys(filter)
     if (!filter[keys[0]])
       return
     dispatch({ type: keys[0] })
-
-  }, [Object.keys(filter), filter])
+  }, [filter, activOperator, activProperty, activValue])
 
   return (
     <div>
