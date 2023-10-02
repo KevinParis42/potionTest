@@ -3,13 +3,13 @@ import { atom } from "jotai";
 export const filtersAtom = atom<Filter>({})
 
 export const productColumnAtom = atom([
-  { val: 'id', name: 'ID' },
-  { val: 'category', name: 'Category' },
-  { val: 'title', name: 'Title' },
-  { val: 'price', name: 'Price' },
-  { val: 'imgLink', name: 'Image Link' },
-  { val: 'available', name: 'Available' },
-  { val: 'categoryId', name: 'Category ID' }
+  { val: 'id', name: 'ID', operator: ['eq', 'ne', 'it', 'lt'] },
+  { val: 'category', name: 'Category', operator: ['eq', 'ne'] },
+  { val: 'title', name: 'Title', operator: ['eq', 'ne'] },
+  { val: 'price', name: 'Price', operator: ['eq', 'ne', 'it', 'lt'] },
+  { val: 'imgLink', name: 'Image Link', operator: ['eq', 'ne'] },
+  { val: 'available', name: 'Available', operator: ['eq', 'ne'] },
+  { val: 'categoryId', name: 'Category ID', operator: ['eq', 'ne'] }
 ])
 
 export const filterValuesAtom = atom({

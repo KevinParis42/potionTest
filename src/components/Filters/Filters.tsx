@@ -14,10 +14,6 @@ const Filters = () => {
   const setFilter = useSetAtom(filtersAtom)
   const [fieldValues, setFieldValues] = useState<string[]>([])
   const [operatorsValues, setOperatorValues] = useState<{ val: string, name: string }[]>([])
-  const operatorList = {
-    complete: [{ val: 'ne', name: '!=' }, { val: 'eq', name: '=' }, { val: 'gt', name: '>' }, { val: 'it', name: '<' }],
-    equal: [{ val: 'ne', name: '!=' }, { val: 'eq', name: '=' }]
-  }
 
   const filterPropertyList = () => {
     if (!filterValues.property)
@@ -36,11 +32,11 @@ const Filters = () => {
   }
 
   const updateOperatorList = () => {
-    if (filterValues.property == 'price' || filterValues.property == 'id') {
-      setOperatorValues(operatorList.complete)
+    const findPropertyCol = productColumns.find(col => col.val === filterValues.property)
+    if (!findPropertyCol)
       return
-    }
-    setOperatorValues(operatorList.equal)
+    const operatorForProperty = findPropertyCol?.operator.map(operator => ({val: operator, name: operator}))
+    setOperatorValues(operatorForProperty)
   }
 
   useEffect(() => {

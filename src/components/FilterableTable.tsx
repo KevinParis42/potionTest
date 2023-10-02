@@ -38,9 +38,8 @@ const FilterableTable = () => {
       return
     }
     const key = Object.keys(filter)[0]
-    if (!filter[key]) {
+    if (!filter[key])
       return
-    }
     dispatch({ type: key })
   }
 
