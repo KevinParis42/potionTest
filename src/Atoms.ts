@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-import { Filter } from "./Types";
 
 export const filtersAtom = atom<Filter>({})
 
@@ -13,9 +12,12 @@ export const productColumnAtom = atom([
   { val: 'categoryId', name: 'Category ID' }
 ])
 
-export const activPropertyAtom = atom('')
-export const activValueAtom = atom('')
-export const activOperatorAtom = atom('')
+export const filterValuesAtom = atom({
+  'value': '',
+  'property': '',
+  'operator': ''
+})
+
 
 export const productListAtom = atom([
   {

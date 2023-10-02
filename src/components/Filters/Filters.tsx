@@ -1,7 +1,6 @@
 
-import { activOperatorAtom, activPropertyAtom, activValueAtom, filtersAtom, productColumnAtom, productListAtom } from '@/Atoms';
-import { ProductType } from '@/Types';
-import { useAtom, useAtomValue } from 'jotai';
+import { filterValuesAtom, filtersAtom, productColumnAtom, productListAtom } from '@/Atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import FiltersInputSelect from './FiltersInputSelect';
 import FiltersSelect from './FiltersSelect';
@@ -11,10 +10,8 @@ const Filters = () => {
 
   const productColumns = useAtomValue(productColumnAtom)
   const productList = useAtomValue(productListAtom)
-  const activProperty = useAtomValue(activPropertyAtom)
-  const activValue = useAtomValue(activValueAtom)
-  const activOperator = useAtomValue(activOperatorAtom)
-  const [filter, setFilter] = useAtom(filtersAtom)
+  const filterValues = useAtomValue(filterValuesAtom)
+  const setFilter = useSetAtom(filtersAtom)
   const [fieldValues, setFieldValues] = useState<string[]>([])
   const [operatorsValues, setOperatorValues] = useState<{ val: string, name: string }[]>([])
   const operatorList = {
@@ -23,28 +20,23 @@ const Filters = () => {
   }
 
   const filterPropertyList = () => {
-    if (!activProperty)
+    if (!filterValues.property)
       return
-    const allFieldVals = productList.map((product) => {
-      const val = product[activProperty as keyof ProductType].toString()
+    const allUniqueFieldVals = new Set(productList.map((product) => {
+      const val = product[filterValues.property as keyof ProductType].toString()
       return val
-    })
-    const uniqueIds = new Set()
-    setFieldValues(allFieldVals.filter(fieldVal => {
-      const isDuplicate = uniqueIds.has(fieldVal)
-      uniqueIds.add(fieldVal)
-      return !isDuplicate
     }))
+    setFieldValues(Array.from(allUniqueFieldVals))
   }
 
   const saveFilter = () => {
-    activProperty && activOperator && activValue && setFilter(
-      { [activOperator]: [activValue, { prop: [activProperty] }] }
+    filterValues.property && filterValues.operator && filterValues.value && setFilter(
+      { [filterValues.operator]: [filterValues.value, { prop: [filterValues.property] }] }
     )
   }
 
   const updateOperatorList = () => {
-    if (activProperty == 'price' || activProperty == 'id') {
+    if (filterValues.property == 'price' || filterValues.property == 'id') {
       setOperatorValues(operatorList.complete)
       return
     }
@@ -55,12 +47,12 @@ const Filters = () => {
     filterPropertyList()
     saveFilter()
     updateOperatorList()
-  }, [activProperty, activOperator, activValue])
+  }, [filterValues.property, filterValues.operator, filterValues.value])
 
   return (
     <div style={{ display: 'flex' }}>
-      <FiltersSelect data={productColumns} fieldTarget='prop' />
-      <FiltersSelect data={operatorsValues} fieldTarget='op' />
+      <FiltersSelect data={productColumns} fieldTarget='property' />
+      <FiltersSelect data={operatorsValues} fieldTarget='operator' />
       <FiltersInputSelect valueData={fieldValues} />
     </div>
   )

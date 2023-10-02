@@ -1,13 +1,11 @@
 "use client"
 
-import Filters from "@/components/Filters"
-import ProductTable from "@/components/ProductTable"
+import FilterableTable from "@/components/FilterableTable"
 
 const Home = () => {
   return (
     <div style={{ padding: '0 100px' }}>
-      <Filters />
-      <ProductTable />
+      <FilterableTable/>
     </div>
   )
 }

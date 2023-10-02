@@ -1,8 +1,8 @@
-export interface Actions {
+interface Actions {
   type: string
 }
 
-export interface ProductType {
+interface ProductType {
   id: string
   category: string
   title: string
@@ -12,6 +12,11 @@ export interface ProductType {
   categoryId: string
 }
 
-export interface Filter {
+interface Filter {
   [key: string]: (string | { prop: string[] })[]
 }
+
+interface DispatchFunctionMap {
+  [key: string]: (a: string, b: string) => boolean
+}
+

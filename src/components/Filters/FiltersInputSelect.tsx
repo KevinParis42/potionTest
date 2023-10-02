@@ -1,17 +1,17 @@
-import { activValueAtom } from "@/Atoms"
+import { filterValuesAtom } from "@/Atoms"
 import { Autocomplete, TextField } from "@mui/material"
-import { useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 
 const FiltersInputSelect: React.FC<{ valueData: string[] }> = ({ valueData }) => {
 
-  const setActivValue = useSetAtom(activValueAtom)
+  const [filterValues, setFilterValues] = useAtom(filterValuesAtom)
 
   return (
     <div>
       <Autocomplete
         options={valueData}
-        onInputChange={(event, textVal) => {
-          setActivValue(textVal)
+        onInputChange={(event, value) => {
+          setFilterValues({ ...filterValues, value })
         }}
         freeSolo
         sx={{ width: 300 }}
