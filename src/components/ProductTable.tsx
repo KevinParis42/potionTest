@@ -8,10 +8,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-const ProductTable: React.FC<{
-  column: { name: string; val: string }[]
-  data: ProductType[]
-}> = ({ column, data }) => {
+const ProductTable: React.FC<ProductTableProps> = ({ column, data }) => {
   return (
     <div>
       <TableContainer>
@@ -26,8 +23,8 @@ const ProductTable: React.FC<{
           <TableBody>
             {data.map((product) => (
               <TableRow key={product.id}>
-                {Object.values(product).map((categ) => (
-                  <TableCell key={categ}>
+                {Object.values(product).map((categ, index) => (
+                  <TableCell key={index}>
                     {typeof categ === 'boolean' ? (
                       categ ? (
                         <CheckBoxOutlinedIcon />

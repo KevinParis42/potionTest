@@ -2,16 +2,6 @@ import { atom } from 'jotai'
 
 export const filtersAtom = atom<Filter>({})
 
-export const productColumnAtom = atom([
-  { val: 'id', name: 'ID', operator: ['eq', 'ne', 'it', 'lt'] },
-  { val: 'category', name: 'Category', operator: ['eq', 'ne'] },
-  { val: 'title', name: 'Title', operator: ['eq', 'ne'] },
-  { val: 'price', name: 'Price', operator: ['eq', 'ne', 'it', 'lt'] },
-  { val: 'imgLink', name: 'Image Link', operator: ['eq', 'ne'] },
-  { val: 'available', name: 'Available', operator: ['eq', 'ne'] },
-  { val: 'categoryId', name: 'Category ID', operator: ['eq', 'ne'] },
-])
-
 export const filterValuesAtom = atom({
   value: '',
   property: '',

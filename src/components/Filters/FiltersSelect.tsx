@@ -5,10 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 
-const FiltersSelect: React.FC<{
-  data: { val: string; name: string }[]
-  fieldTarget: string
-}> = ({ data, fieldTarget }) => {
+const FiltersSelect: React.FC<FilterSelectProp> = ({ data, fieldTarget }) => {
   const [activ, setActiv] = useState('')
   const [filterValues, setFilterValues] = useAtom(filterValuesAtom)
 

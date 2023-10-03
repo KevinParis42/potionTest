@@ -1,8 +1,14 @@
-interface Actions {
+type Actions = {
   type: string
 }
 
-interface ProductType {
+type ProductCol = {
+  val: string
+  name: string
+  operator: string[]
+}
+
+type ProductType = {
   id: string
   category: string
   title: string
@@ -12,10 +18,24 @@ interface ProductType {
   categoryId: string
 }
 
-interface Filter {
+type Filter = {
   [key: string]: (string | { prop: string[] })[]
 }
 
-interface DispatchFunctionMap {
+type DispatchFunctionMap = {
   [key: string]: (a: string, b: string) => boolean
+}
+
+type FilterSelectProp = {
+  data: { val: string; name: string }[]
+  fieldTarget: string
+}
+
+type FiltersProp = { column: ProductCol[] }
+
+type FiltersInputSelectProps = { valueData: string[] }
+
+type ProductTableProps = {
+  column: { name: string; val: string }[]
+  data: ProductType[]
 }

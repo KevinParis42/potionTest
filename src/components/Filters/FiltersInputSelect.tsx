@@ -2,7 +2,7 @@ import { filterValuesAtom } from '@/Atoms'
 import { Autocomplete, TextField } from '@mui/material'
 import { useAtom } from 'jotai'
 
-const FiltersInputSelect: React.FC<{ valueData: string[] }> = ({
+const FiltersInputSelect: React.FC<FiltersInputSelectProps> = ({
   valueData,
 }) => {
   const [filterValues, setFilterValues] = useAtom(filterValuesAtom)
