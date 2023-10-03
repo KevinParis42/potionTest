@@ -19,4 +19,3 @@ interface Filter {
 interface DispatchFunctionMap {
   [key: string]: (a: string, b: string) => boolean
 }
-

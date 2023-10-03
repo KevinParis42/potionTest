@@ -1,20 +1,23 @@
+import { filterValuesAtom } from '@/Atoms'
+import FormControl from '@mui/material/FormControl'
+import MenuItem from '@mui/material/MenuItem'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import { useAtom } from 'jotai'
+import { useState } from 'react'
 
-import { filterValuesAtom } from '@/Atoms';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useAtom } from 'jotai';
-import { useState } from 'react';
-
-const FiltersSelect: React.FC<{ data: { val: string, name: string }[], fieldTarget: string }> = ({ data, fieldTarget }) => {
-
+const FiltersSelect: React.FC<{
+  data: { val: string; name: string }[]
+  fieldTarget: string
+}> = ({ data, fieldTarget }) => {
   const [activ, setActiv] = useState('')
   const [filterValues, setFilterValues] = useAtom(filterValuesAtom)
 
-
   const handleChange = (e: SelectChangeEvent) => {
     setActiv(e.target.value)
-    setFilterValues({ ...filterValues, [fieldTarget as string]: e.target.value })
+    setFilterValues({
+      ...filterValues,
+      [fieldTarget as string]: e.target.value,
+    })
   }
 
   return (
@@ -26,7 +29,11 @@ const FiltersSelect: React.FC<{ data: { val: string, name: string }[], fieldTarg
           name={`${fieldTarget}-select`}
         >
           <MenuItem value={''}>-</MenuItem>
-          {data.map((value) => <MenuItem key={value.val} value={value.val}>{value.name}</MenuItem>)}
+          {data.map((value) => (
+            <MenuItem key={value.val} value={value.val}>
+              {value.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </div>

@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import FilterableTable from "@/components/FilterableTable"
+import FilterableTable from '@/components/FilterableTable'
 
 const Home = () => {
   return (
     <div style={{ padding: '0 100px' }}>
-      <FilterableTable/>
+      <FilterableTable />
     </div>
   )
 }

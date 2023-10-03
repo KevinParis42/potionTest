@@ -1,9 +1,10 @@
-import { filterValuesAtom } from "@/Atoms"
-import { Autocomplete, TextField } from "@mui/material"
-import { useAtom } from "jotai"
+import { filterValuesAtom } from '@/Atoms'
+import { Autocomplete, TextField } from '@mui/material'
+import { useAtom } from 'jotai'
 
-const FiltersInputSelect: React.FC<{ valueData: string[] }> = ({ valueData }) => {
-
+const FiltersInputSelect: React.FC<{ valueData: string[] }> = ({
+  valueData,
+}) => {
   const [filterValues, setFilterValues] = useAtom(filterValuesAtom)
 
   return (
