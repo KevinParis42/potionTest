@@ -27,7 +27,7 @@ type DispatchFunctionMap = {
 }
 
 type FilterSelectProp = {
-  data: { val: string; name: string }[]
+  filterData: { val: string; name: string }[]
   fieldTarget: string
 }
 
@@ -39,3 +39,5 @@ type ProductTableProps = {
   column: { name: string; val: string }[]
   data: ProductType[]
 }
+
+type operatorsValuesType = { val: string; name: string }[]

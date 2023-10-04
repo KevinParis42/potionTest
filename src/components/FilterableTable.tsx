@@ -30,7 +30,7 @@ const FilterableTable = () => {
     const propObject = filter[action.type][1] as { prop: string[] }
     const prop = propObject.prop[0]
 
-    const x: DispatchFunctionMap = {
+    const dispatchFunctions: DispatchFunctionMap = {
       ne: (a: string, b: string) => a !== b,
       eq: (a: string, b: string) => a === b,
       gt: (a: string, b: string) => parseFloat(a) > parseFloat(b),
@@ -38,7 +38,10 @@ const FilterableTable = () => {
     }
 
     return productList.filter((product) =>
-      x[action.type](product[prop as keyof ProductType].toString(), val)
+      dispatchFunctions[action.type](
+        product[prop as keyof ProductType].toString(),
+        val
+      )
     )
   }
 
