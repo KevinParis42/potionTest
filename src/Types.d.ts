@@ -22,6 +22,10 @@ type Filter = {
   [key: string]: (string | { prop: string[] })[]
 }
 
+type ProductProperties = {
+  [key: string]: { type: string; name: string }
+}
+
 type DispatchFunctionMap = {
   [key: string]: (a: string, b: string) => boolean
 }

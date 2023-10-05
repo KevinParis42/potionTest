@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import FiltersInputSelect from './FiltersInputSelect'
 import FiltersSelect from './FiltersSelect'
 
-const Filters: React.FC<FiltersProp> = ({ column }) => {
+const Filters = () => {
   const productList = useAtomValue(productListAtom)
   const filterValues = useAtomValue(filterValuesAtom)
   const setFilter = useSetAtom(filtersAtom)
