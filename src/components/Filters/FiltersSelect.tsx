@@ -5,7 +5,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 
-const FiltersSelect: React.FC<FilterSelectProp> = ({ data, fieldTarget }) => {
+const FiltersSelect: React.FC<FilterSelectProp> = ({
+  filterData,
+  fieldTarget,
+}) => {
   const [activ, setActiv] = useState('')
   const [filterValues, setFilterValues] = useAtom(filterValuesAtom)
 
@@ -26,8 +29,8 @@ const FiltersSelect: React.FC<FilterSelectProp> = ({ data, fieldTarget }) => {
           name={`${fieldTarget}-select`}
         >
           <MenuItem value={''}>-</MenuItem>
-          {data.map((value) => (
-            <MenuItem key={value.val} value={value.val}>
+          {filterData.map((value, index) => (
+            <MenuItem key={index} value={value.val}>
               {value.name}
             </MenuItem>
           ))}

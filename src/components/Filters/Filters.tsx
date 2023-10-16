@@ -4,14 +4,12 @@ import { useCallback, useEffect, useState } from 'react'
 import FiltersInputSelect from './FiltersInputSelect'
 import FiltersSelect from './FiltersSelect'
 
-const Filters: React.FC<FiltersProp> = ({ column }) => {
+const Filters = () => {
   const productList = useAtomValue(productListAtom)
   const filterValues = useAtomValue(filterValuesAtom)
   const setFilter = useSetAtom(filtersAtom)
   const [fieldValues, setFieldValues] = useState<string[]>([])
-  const [operatorsValues, setOperatorValues] = useState<
-    { val: string; name: string }[]
-  >([])
+  const [operatorsValues, setOperatorValues] = useState<operatorsValuesType>([])
 
   const filterPropertyList = useCallback(() => {
     if (!filterValues.property) {
@@ -66,8 +64,8 @@ const Filters: React.FC<FiltersProp> = ({ column }) => {
 
   return (
     <div style={{ display: 'flex' }}>
-      <FiltersSelect data={column} fieldTarget="property" />
-      <FiltersSelect data={operatorsValues} fieldTarget="operator" />
+      <FiltersSelect filterData={column} fieldTarget="property" />
+      <FiltersSelect filterData={operatorsValues} fieldTarget="operator" />
       <FiltersInputSelect valueData={fieldValues} />
     </div>
   )

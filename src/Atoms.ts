@@ -8,6 +8,16 @@ export const filterValuesAtom = atom({
   operator: '',
 })
 
+export const productPropertiesAtom = atom<ProductProperties>({
+  id: { type: 'number', name: 'ID' },
+  category: { type: 'string', name: 'Category' },
+  title: { type: 'string', name: 'Title' },
+  price: { type: 'number', name: 'Price' },
+  imgLink: { type: 'string', name: 'Image Link' },
+  available: { type: 'string', name: 'Available' },
+  categoryId: { type: 'string', name: 'Category ID' },
+})
+
 export const productListAtom = atom([
   {
     id: '8707084648757',
